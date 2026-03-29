@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Simulateur SRV-PROD-01 (Port 9101)
+  fleeto-agent-prod:
+    build: 
+      context: ./agent
+      dockerfile: Dockerfile
+    container_name: fleeto-agent-prod
+    ports:
+      - "9101:9101"
+    environment:
+      - NEBULOPS_TOKEN=secret-prod-123
+      - FLEETOPS_TOKEN=secret-prod-123
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    pid: host
+    restart: always
+
+  # Simulateur SRV-STAGING-01 (Port 9102)
+  fleeto-agent-staging:
+    build: 
+      context: ./agent
+      dockerfile: Dockerfile
+    container_name: fleeto-agent-staging
+    ports:
+      - "9102:9101"
+    environment:
+      - NEBULOPS_TOKEN=secret-staging-456
+      - FLEETOPS_TOKEN=secret-staging-456
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+  # --- TEST CONTAINERS FOR VISUALIZATION ---
+  
+  web-test-srv:
+    image: nginx:alpine
+    container_name: web-test-srv
+    ports:
+      - "8081:80"
+    restart: always
+
+  db-test-srv:
+    image: postgres:15-alpine
+    container_name: db-test-srv
+    environment:
+      - POSTGRES_PASSWORD=nebula
+    restart: always
+
+  cache-test-srv:
+    image: redis:alpine
+    container_name: cache-test-srv
+    restart: always
