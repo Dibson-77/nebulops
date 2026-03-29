@@ -16,6 +16,7 @@ export class UsersService {
 
   async findOne(id: string) {
     const user = await this.prisma.user.findUnique({ where: { id } });
+    if (!user) throw new NotFoundException(`Utilisateur ${id} introuvable`);
     return user;
   }
 
