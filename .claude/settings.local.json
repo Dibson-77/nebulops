@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/junio/ProjetsNextjs/nebulops/src -type f -name *types* -o -name *interface*)",
+      "Bash(npx next:*)",
+      "Bash(grep -r \"localhost:3006\\\\|websocket\\\\|socket\\\\|WS\" /c/Users/junio/ProjetsNextjs/nebulops/src --include=*.ts --include=*.tsx)",
+      "Bash(ls /c/Users/junio/ProjetsNextjs/nebulops/src/app/\\\\\\(dashboard\\\\\\))",
+      "Bash(ls /c/Users/junio/ProjetsNextjs/nebulops/src/app/api/servers/[id])",
+      "Bash(ls /c/Users/junio/ProjetsNextjs/nebulops/src/app/api/servers/[id]/metrics)",
+      "Bash(cat /c/Users/junio/ProjetsNextjs/nebulops/src/app/api/servers/[id]/metrics/route.ts)",
+      "Bash(ls /c/Users/junio/ProjetsNextjs/nebulops/src/app/\\\\\\(dashboard\\\\\\)/alerts)",
+      "Bash(ls /c/Users/junio/ProjetsNextjs/nebulops/src/app/\\\\\\(dashboard\\\\\\)/servers)",
+      "Bash(ls /c/Users/junio/ProjetsNextjs/nebulops/src/app/\\\\\\(dashboard\\\\\\)/admin)",
+      "Bash(npx prisma:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm install:*)",
+      "Bash(node -e \"require\\(''whatsapp-web.js''\\); console.log\\(''OK''\\)\")"
+    ]
+  }
+}
