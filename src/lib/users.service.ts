@@ -63,7 +63,7 @@ export class UsersService {
 
   async changePassword(id: string, oldPassword: string, newPassword: string) {
     const user = await this.prisma.user.findUnique({ where: { id } });
-    if (!user) throw new NotFoundException('Utilisateur introuvable');
+    
 
     const valid = await bcrypt.compare(oldPassword, user.password);
     if (!valid) throw new ConflictException('Ancien mot de passe incorrect');
