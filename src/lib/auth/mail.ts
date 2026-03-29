@@ -63,25 +63,4 @@ function loadTemplate(
 /**
  * Envoie un email en utilisant un template Handlebars.
  */
-export async function sendEmail(data: MailData): Promise<void> {
-  const html = loadTemplate(data.templateName, data.context);
 
-  try {
-    await transporter.sendMail({
-      from: process.env.MAIL_FROM || process.env.MAIL_USER,
-      to: data.email,
-      subject: data.sujet,
-      html,
-    });
-    console.log(`[MAIL] ✅ Email envoyé à ${data.email} (${data.sujet})`);
-  } catch (error) {
-    console.error(`[MAIL] ❌ Erreur d'envoi à ${data.email}:`, error);
-    // Fallback : log le contenu utile en console
-    if (data.context.otp) {
-      console.warn(`[MAIL] ⚠️ FALLBACK OTP pour ${data.email}: ${data.context.otp}`);
-    }
-    if (data.context.password) {
-      console.warn(`[MAIL] ⚠️ FALLBACK PASSWORD pour ${data.email}: ${data.context.password}`);
-    }
-  }
-}
